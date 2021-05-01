@@ -1,22 +1,32 @@
-import { getById, people } from "./db";
+import { getMovies, getById, addMovie } from "./db";
 
 const resolvers = {
   Query: {
-    people: () => people,
-    person: (_, { id }) => getById(id),
+    movies: () => getMovies(),
+    movie: (_, { id }) => getById(id),
+  },
+  Mutation: {
+    addMovie: (_, { name, score }) => addMovie(name, score),
   },
 };
 
 // can check at localhost:4000 by writing like below code
+
 // query {
-//   people {
+//   movies {
 //     name
-//     age
+//     score
 //   }
 // }
 
 // {
-//   person(id: 1) {
+//   movie(id: 1) {
+//     name
+//   }
+// }
+
+// mutation {
+//   addMovie(name: "hello", score: 1) {
 //     name
 //   }
 // }
